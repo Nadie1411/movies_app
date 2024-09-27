@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../Browse Tab/browse_tab.dart';
 import '../Search Tab/search_tab.dart';
 import '../Themes/app_colors.dart';
 import '../WatchList Tab/watchList_tab.dart';
 import 'HomeTab/home_tab.dart';
-
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';

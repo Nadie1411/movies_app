@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:movie_app/Themes/my_theme.dart';
 import 'Browse Tab/browse_tab.dart';
+import 'HomeScreen/HomeTab/cubit/movies_cubit.dart';
 import 'HomeScreen/HomeTab/home_tab.dart';
 import 'HomeScreen/Movie Details/movie_details.dart';
 import 'HomeScreen/home_screen.dart';
@@ -9,9 +11,13 @@ import 'Search Tab/search_tab.dart';
 import 'Splash Screen/splash_screen.dart';
 import 'WatchList Tab/watchList_tab.dart';
 
-
 void main() {
-  runApp(MyApp());
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (context) => MoviesCubit()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +29,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+            theme: MyTheme.theme,
             debugShowCheckedModeBanner: false,
             initialRoute: HomeScreen.routeName,
             routes: {
@@ -32,7 +39,7 @@ class MyApp extends StatelessWidget {
               MovieDetailsTab.routeName: (context) => MovieDetailsTab(),
               SearchTab.routeName: (context) => SearchTab(),
               BrowseTab.routeName: (context) => BrowseTab(),
-              WatchListTab.routeName: (context) => WatchListTab()
+              WatchListTab.routeName: (context) => WatchListTab(),
             },
           );
         });
